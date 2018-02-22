@@ -1,14 +1,11 @@
 pipeline {
     agent any
- 
-    triggers {
-         pollSCM('* * * * *') // Polling Source Control
      }
  
 stages{
         stage('Build'){
             steps {
-               build job: 'Hello_Jenkins ' 
+               build job: 'Hello Jenkins ' 
             }
             post {
                 success {
@@ -16,23 +13,26 @@ stages{
                 }
             }
         }
- 
-        stage ('Deployments'){
-            parallel{
-                stage ('Ansible Hostname Playbook'){
-                    steps {
-                       build job: 'Run Ansible Playbook '
+         stage ('Ansible Hostname Playbook'){
+             steps {
+                build job: 'Run_Ansible_Playbook '
                     }
-                post { 
-                    success {
-                      echo "Ready for Ansible Production"
+             post { 
+             success {
+              echo "Ready for Ansible Production"
                     }
-                  }
+                  
+             failure { 
+              echo "Not Ready for Production"
+             }
+             }
                 }
- 
-                stage ('Ansible Common Playbook'){
-                    steps {
-                       sh '/usr/local/bin/ansible-playbook /etc/ansible/test/common.yml -i /etc/ansible/hosts'
+         stage ('Ansible Common Playbook'){
+            steps {
+                  timeout (time:1, unit: 'DAYS'){
+                      input message: 'Approve PRODUCTION Deployment?'
+                  }
+                  build job: 'Run_Ansible_Playbook_to_Production'
                     }
                 }
             }
