@@ -21,7 +21,7 @@ stages{
             parallel{
                 stage ('Ansible Hostname Playbook'){
                     steps {
-                        /usr/local/bin/ansible-playbook /etc/ansible/test/hostname.yml -i /etc/ansible/hosts -s -f 5
+                        sh /usr/local/bin/ansible-playbook /etc/ansible/test/hostname.yml -i /etc/ansible/hosts -s -f 5
                     }
                 post { 
                     success {
@@ -32,7 +32,7 @@ stages{
  
                 stage ('Ansible Common Playbook'){
                     steps {
-                       /usr/local/bin/ansible-playbook /etc/ansible/test/common.yml -i /etc/ansible/hosts -s -f 5 
+                       sh /usr/local/bin/ansible-playbook /etc/ansible/test/common.yml -i /etc/ansible/hosts -s -f 5 
                     }
                 }
             }
