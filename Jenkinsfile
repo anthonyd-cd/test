@@ -32,8 +32,7 @@ stages{
  
                 stage ('Ansible Common Playbook'){
                     steps {
-                       "#!/bin/bash"
-                       /usr/local/bin/ansible-playbook /etc/ansible/test/common.yml -i /etc/ansible/hosts  
+                       sh '/usr/local/bin/ansible-playbook /etc/ansible/test/common.yml -i /etc/ansible/hosts'
                     }
                 }
             }
