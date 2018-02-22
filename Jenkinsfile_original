@@ -8,7 +8,7 @@ pipeline {
 stages{
         stage('Build'){
             steps {
-               build job: 'Hello Jenkins ' 
+                echo "from Jenkins Code File"
             }
             post {
                 success {
@@ -21,7 +21,7 @@ stages{
             parallel{
                 stage ('Ansible Hostname Playbook'){
                     steps {
-                       build job: 'Run Ansible Playbook '
+                       sh '/usr/local/bin/ansible-playbook /etc/ansible/test/hostname.yml -i /etc/ansible/hosts'
                     }
                 post { 
                     success {
