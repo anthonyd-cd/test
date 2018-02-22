@@ -22,7 +22,7 @@ stages{
                 stage ('Ansible Hostname Playbook'){
                     steps {
                         sh "#!/bin/bash"
-                        "/usr/local/bin/ansible-playbook /etc/ansible/test/hostname.yml -i /etc/ansible/hosts"
+                        /usr/local/bin/ansible-playbook /etc/ansible/test/hostname.yml -i /etc/ansible/hosts
                     }
                 post { 
                     success {
