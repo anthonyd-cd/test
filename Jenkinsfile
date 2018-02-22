@@ -8,7 +8,7 @@ pipeline {
 stages{
         stage('Build'){
             steps {
-               build job: 'Hello Jenkins ' 
+               build job: 'Hello_Jenkins ' 
             }
             post {
                 success {
