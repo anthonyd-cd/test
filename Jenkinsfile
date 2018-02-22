@@ -1,7 +1,6 @@
 pipeline {
     agent any
      }
- 
 stages{
         stage('Build'){
             steps {
@@ -34,5 +33,5 @@ stages{
                   }
                   build job: 'Run_Ansible_Playbook_to_Production'
                     }
-                }
-            }
+              }
+       }
