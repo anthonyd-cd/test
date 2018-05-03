@@ -1,1 +1,1 @@
-GIT Class 2018
+this was merged without fast-forward option to master branch
